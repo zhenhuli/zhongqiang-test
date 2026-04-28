@@ -697,8 +697,17 @@ video {
 .h-full {
   height: 100%;
 }
+.h-7 {
+  height: 1.75rem;
+}
 .min-h-screen {
   min-height: 100vh;
+}
+.min-h-36 {
+  min-height: 9rem;
+}
+.min-h-48 {
+  min-height: 12rem;
 }
 .w-1 {
   width: 0.25rem;

@@ -273,12 +273,11 @@ export default function Tuner({
 
       {/* Tuner Display */}
       <div className="bg-white rounded-3xl shadow-xl p-8 mb-8">
-        {/* Note Display - 固定高度防止抖动 */}
-        <div className="text-center mb-8 min-h-48 flex flex-col items-center justify-center">
+        {/* Note Display */}
+        <div className="text-center mb-8">
           {isListening ? (
-            <div className="w-full">
-              {/* 监听状态指示 - 固定高度 */}
-              <div className="flex items-center justify-center mb-4 h-6">
+            <>
+              <div className="flex items-center justify-center mb-4">
                 <div
                   className={`w-4 h-4 rounded-full mr-2 ${
                     currentFrequency ? 'bg-secondary animate-pulse' : 'bg-gray-300'
@@ -289,99 +288,75 @@ export default function Tuner({
                 </span>
               </div>
 
-              {/* 音高显示区域 - 固定最小高度 */}
-              <div className="min-h-36 flex flex-col items-center justify-center">
-                {currentNote ? (
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-end justify-center mb-2">
-                      <span
-                        className={`text-7xl md:text-9xl font-bold ${
-                          isInTune ? 'text-secondary' : 'text-danger'
-                        }`}
-                      >
-                        {currentNote}
-                      </span>
-                      {currentOctave !== null && (
-                        <span className="text-2xl md:text-3xl text-gray-500 mb-3">
-                          {currentOctave}
-                        </span>
-                      )}
-                    </div>
-
-                    {currentFrequency && (
-                      <div className="text-xl text-gray-600 mb-2 h-7">
-                        {currentFrequency.toFixed(1)} Hz
-                      </div>
-                    )}
-
-                    <div
-                      className={`inline-flex items-center px-6 py-3 rounded-full text-lg font-medium ${
-                        isInTune
-                          ? 'bg-secondary/10 text-secondary'
-                          : 'bg-danger/10 text-danger'
+              {currentNote && (
+                <div className="flex flex-col items-center">
+                  <div className="flex items-end justify-center mb-2">
+                    <span
+                      className={`text-7xl md:text-9xl font-bold ${
+                        isInTune ? 'text-secondary' : 'text-danger'
                       }`}
                     >
-                      {isInTune ? (
-                        <>
-                          <svg
-                            className="w-6 h-6 mr-2"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          音准正确
-                        </>
-                      ) : (
-                        <>
-                          <svg
-                            className="w-6 h-6 mr-2"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          {deviation > 0
-                            ? `偏高 ${Math.abs(deviation).toFixed(1)} 音分`
-                            : `偏低 ${Math.abs(deviation).toFixed(1)} 音分`}
-                        </>
-                      )}
-                    </div>
+                      {currentNote}
+                    </span>
+                    {currentOctave !== null && (
+                      <span className="text-2xl md:text-3xl text-gray-500 mb-3">
+                        {currentOctave}
+                      </span>
+                    )}
                   </div>
-                ) : (
-                  // 无音频时显示占位内容，保持高度一致
-                  <div className="flex flex-col items-center justify-center py-8">
-                    <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                      <svg
-                        className="w-8 h-8 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                        />
-                      </svg>
+
+                  {currentFrequency && (
+                    <div className="text-xl text-gray-600 mb-2">
+                      {currentFrequency.toFixed(1)} Hz
                     </div>
-                    <p className="text-gray-500 text-lg">请拨弹琴弦开始调音</p>
+                  )}
+
+                  <div
+                    className={`inline-flex items-center px-6 py-3 rounded-full text-lg font-medium ${
+                      isInTune
+                        ? 'bg-secondary/10 text-secondary'
+                        : 'bg-danger/10 text-danger'
+                    }`}
+                  >
+                    {isInTune ? (
+                      <>
+                        <svg
+                          className="w-6 h-6 mr-2"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        音准正确
+                      </>
+                    ) : (
+                      <>
+                        <svg
+                          className="w-6 h-6 mr-2"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        {deviation > 0
+                          ? `偏高 ${Math.abs(deviation).toFixed(1)} 音分`
+                          : `偏低 ${Math.abs(deviation).toFixed(1)} 音分`}
+                      </>
+                    )}
                   </div>
-                )}
-              </div>
-            </div>
+                </div>
+              )}
+            </>
           ) : (
-            // 未监听状态 - 固定高度布局
-            <div className="flex flex-col items-center justify-center py-4">
+            <div className="text-center py-8">
               <div className="w-20 h-20 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
                 <svg
                   className="w-10 h-10 text-primary"
