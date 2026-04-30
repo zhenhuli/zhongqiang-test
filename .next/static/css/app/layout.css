@@ -700,6 +700,9 @@ video {
 .h-7 {
   height: 1.75rem;
 }
+.h-44 {
+  height: 11rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1301,6 +1304,9 @@ video {
 }
 .text-white\/90 {
   color: rgb(255 255 255 / 0.9);
+}
+.text-transparent {
+  color: transparent;
 }
 .underline {
   text-decoration-line: underline;
